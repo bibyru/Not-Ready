@@ -91,3 +91,11 @@ This project was developed using Godot v4.2.2.
 2. Extract to **Folder A** (an empty folder).
 3. Launch Godot v4.2.2.
 4. Press **Import** and select `project.godot` in **Folder A**.
+
+_To install Godot Jolt v0.12:_
+1. Download Godot Jolt v0.12 [here](https://github.com/godot-jolt/godot-jolt/releases/tag/v0.12.0-stable).
+2. Extract folder to **Folder A**.
+3. Launch project in Godot v4.2.2.
+4. Press **Project** -> **Project Settings**.
+5. Press **3D** in the **Physics** tab.
+6. Change **Physics Engine** to **GodotJolt**.
