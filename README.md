@@ -12,7 +12,7 @@ Download game [here](https://github.com/bibyru/Not-Ready/releases/).
 
 ## 🎮 Game Controls
 This game uses mouse and keyboard as inputs.
-| **Action** | **Key binding** |
+| **Key binding** | **Action** |
 | :- | :- |
 | Esc | Restart level |
 | W, A, S, D | Move |
