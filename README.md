@@ -27,7 +27,7 @@ This game uses mouse and keyboard as inputs.
 
 
 ## 📝 Project Info
-This project was developped using Godot v4.2.2.
+This project was developed using Godot v4.2.2.
 | **Role** | **Credit** | **Development Time** |
 | :- | :- | :- |
 | Game programmer | bibyru (Ruby) | 4 days |
