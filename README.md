@@ -8,6 +8,8 @@ In **Not Ready**, players must secure a location where bad guys exist.
 Download game [here](https://github.com/bibyru/Not-Ready/releases/).
 
 
+<br/>
+
 ## 🎮 Game Controls
 This game uses mouse and keyboard as inputs.
 | **Action** | **Key binding** |
@@ -26,6 +28,8 @@ This game uses mouse and keyboard as inputs.
 | Alt + W, A, S, D | Freelean |
 
 
+<br/>
+
 ## 📝 Project Info
 This project was developed using Godot v4.2.2.
 | **Role** | **Credit** | **Development Time** |
@@ -36,6 +40,8 @@ This project was developed using Godot v4.2.2.
 | Game designer | bibyru (Ruby) | 1 day |
 | Sound designer | bibyru (Ruby) | 1 day |
 
+
+<br/>
 
 ## ⭐ Scripts and Features
 | **Script** | **Description** |
@@ -60,6 +66,8 @@ This project was developed using Godot v4.2.2.
 | `Trajectory.gd` | Script for bullet trajectory. |
 
 
+<br/>
+
 ## 📁 File Description
 ```
 ├── Not-Ready
@@ -74,6 +82,9 @@ This project was developed using Godot v4.2.2.
     ├── Scripts    # for all game scripts
     ├── db40d04acc3ee29e754f91b8881dcfe4b516ef15  # godot addon folder: Godot Jolt v12
 ```
+
+
+<br/>
 
 ## 💿 How to open in Game Engine
 1. Download all files.
