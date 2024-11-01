@@ -1,5 +1,5 @@
 ## 📔 Game Description
-![Gif of Not Ready gameplay](Sauce/Stuff2D/NotReady.gif)
+![Gif of Not Ready gameplay](https://github.com/bibyru/bibyru/blob/main/Gifs/NotReady.gif)
 
 In **Not Ready**, players must secure a location where bad guys exist.
 
