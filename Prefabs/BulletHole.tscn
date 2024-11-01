@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpo8lh5n4lr53"]
+
+[ext_resource type="Texture2D" uid="uid://dk24s56ysac6" path="res://Sauce/Stuff2D/BulletHole.png" id="1_ronpc"]
+
+[node name="BulletHole" type="Decal"]
+size = Vector3(0.05, 0.05, 0.05)
+texture_albedo = ExtResource("1_ronpc")
+upper_fade = 1.05166e-05
+lower_fade = 1e-05
+distance_fade_enabled = true
+distance_fade_begin = 25.0

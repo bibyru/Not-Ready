@@ -1,0 +1,48 @@
+
+TODO LIST:
+	Gun							<-- YEA BABY
+		Hitmarks and stuff
+		
+	Functioning doors 			<-- YEA BABY SO FUCKING COMPLICATED (but actually not i just made it hard for myself)
+		14/01/2024
+		Peeking and stuff
+		
+	Scripts						<-- Done while fixing doors too *SmugEmoji
+		14/01/2024
+		Modulate movement and stuff
+		
+	Sound Design				<-- Skipping, not my forte unfortunately
+		14/01/2024
+		Hehe boi
+		
+	Fixing Player Code			<-- DONE
+		15/01/2024
+		V	UI stuff (Safety is finnicky)
+		V	Fix Trajectory beam
+		V	Other bullshit like the mag throw mechanic is FIXED <-- YEA BABY
+		
+	Mean Bots					<-- in progress...
+		fuck man...
+		
+		20/01/24
+		Kinda fine now, not all implemented yet tho
+		
+		Next is the Combat state in detail: shooting player & stuff
+		or the restrain prompt that i set up
+		
+		21/01/24
+		How to progress bar (DONE)
+		How to combat player
+		
+	Player Code					<-- in progress...
+		20/01/24
+		HOW DO I DO THE RECOIL???
+		a missing feature is not a bug...
+		it's a missing feature...
+		
+	Sound Design				<-- in progress
+		20/01/24
+		Added voice for PlayerYell and EnemyTeamKilled
+		
+	Finished Map
+		Later tootsies

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bt6rplitwmpf2"
+path="res://.godot/imported/Strimer Sleepy donno where to go.mp3-c7de050990f3b2fd15c06ed95a718dae.mp3str"
+
+[deps]
+
+source_file="res://Sauce/MP3/Strimer Sleepy donno where to go.mp3"
+dest_files=["res://.godot/imported/Strimer Sleepy donno where to go.mp3-c7de050990f3b2fd15c06ed95a718dae.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

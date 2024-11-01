@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://corl1q68rupey"]
+
+[ext_resource type="Script" path="res://Scripts/Object_Light.gd" id="1_8ir4m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aakj2"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ibqhj"]
+material = SubResource("StandardMaterial3D_aakj2")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Light" type="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0681714, 0)
+light_indirect_energy = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 9.02715
+script = ExtResource("1_8ir4m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0219837, 0)
+layers = 32
+mesh = SubResource("BoxMesh_ibqhj")
+skeleton = NodePath("")

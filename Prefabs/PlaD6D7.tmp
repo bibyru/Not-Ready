@@ -1,0 +1,322 @@
+[gd_scene load_steps=39 format=3 uid="uid://b03juyeh8o7fh"]
+
+[ext_resource type="Script" path="res://Scripts/Script_Player.gd" id="1_1hboj"]
+[ext_resource type="PackedScene" uid="uid://0etqto6cefks" path="res://Prefabs/MK16.tscn" id="2_3osvj"]
+[ext_resource type="Shader" uid="uid://bpxuccdbj5fmv" path="res://Sauce/Stuff2D/Censors.tres" id="3_hqwut"]
+[ext_resource type="Script" path="res://Scripts/Script_UI.gd" id="4_3ew6s"]
+[ext_resource type="Script" path="res://Scripts/Script_Interact.gd" id="4_3o5o7"]
+[ext_resource type="AudioStream" uid="uid://b7w4i1m61jk1v" path="res://Sauce/MP3/Strimer Dappa Get Down.mp3" id="4_og1k0"]
+[ext_resource type="Script" path="res://Scripts/Script_Gun.gd" id="5_7sjsl"]
+[ext_resource type="PackedScene" uid="uid://ov64mksecak" path="res://Prefabs/AlertArea.tscn" id="5_o2fx0"]
+[ext_resource type="Script" path="res://Scripts/Script_Freelean.gd" id="5_pivvj"]
+[ext_resource type="AnimationLibrary" uid="uid://glki2ggfo4fo" path="res://Sauce/Animations/mk16_mine.res" id="8_meemm"]
+[ext_resource type="Script" path="res://Scripts/Trajectory.gd" id="8_qu7ly"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_56al0"]
+radius = 0.2
+height = 1.32
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nknxc"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abreu"]
+shader = ExtResource("3_hqwut")
+shader_parameter/PixelFactor = 512.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r0vgf"]
+animation = &"mk16_mine/Movement_Moving"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rsdvv"]
+animation = &"mk16_mine/Movement_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_38dx7"]
+animation = &"mk16_mine/RESET"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_0yqw5"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_r0vgf")
+blend_point_0/pos = 2.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_rsdvv")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_38dx7")
+blend_point_2/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vq1s"]
+animation = &"mk16_mine/Pose_ReadyLow"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5mkkw"]
+animation = &"mk16_mine/Pose_ReadyAim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h53to"]
+animation = &"mk16_mine/Pose_ReadyHigh"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_6u5ye"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8vq1s")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_5mkkw")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_h53to")
+blend_point_2/pos = 1.0
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ec345"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_654oi"]
+animation = &"mk16_mine/Reload_Normal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2f3y2"]
+animation = &"mk16_mine/Reload_Check"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_31j6c"]
+animation = &"mk16_mine/Pose_MagHold"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0h6fu"]
+animation = &"mk16_mine/Reload_Empty"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o2iqp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5e226"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5120p"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xp5pm"]
+states/mk16_mine_Pose_MagHold/node = SubResource("AnimationNodeAnimation_31j6c")
+states/mk16_mine_Pose_MagHold/position = Vector2(639, 100)
+states/mk16_mine_Reload_Empty/node = SubResource("AnimationNodeAnimation_0h6fu")
+states/mk16_mine_Reload_Empty/position = Vector2(382, 100)
+transitions = ["Start", "mk16_mine_Reload_Empty", SubResource("AnimationNodeStateMachineTransition_o2iqp"), "mk16_mine_Reload_Empty", "mk16_mine_Pose_MagHold", SubResource("AnimationNodeStateMachineTransition_5e226"), "mk16_mine_Pose_MagHold", "End", SubResource("AnimationNodeStateMachineTransition_5120p")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pyfn0"]
+animation = &"mk16_mine/Reload_NewMag"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bns5a"]
+animation = &"mk16_mine/OS_Safety"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbcpl"]
+animation = &"mk16_mine/OS_Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vbpa"]
+animation = &"mk16_mine/OS_Yell"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_dxoxy"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_654oi")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_2f3y2")
+blend_point_1/pos = 0.1
+blend_point_2/node = SubResource("AnimationNodeStateMachine_xp5pm")
+blend_point_2/pos = 0.2
+blend_point_3/node = SubResource("AnimationNodeAnimation_pyfn0")
+blend_point_3/pos = 0.3
+blend_point_4/node = SubResource("AnimationNodeAnimation_bns5a")
+blend_point_4/pos = 0.4
+blend_point_5/node = SubResource("AnimationNodeAnimation_tbcpl")
+blend_point_5/pos = 0.5
+blend_point_6/node = SubResource("AnimationNodeAnimation_2vbpa")
+blend_point_6/pos = 0.6
+min_space = 0.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_gkpgs"]
+mix_mode = 1
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nl1fx"]
+nodes/Movement/node = SubResource("AnimationNodeBlendSpace1D_0yqw5")
+nodes/Movement/position = Vector2(-300, -80)
+nodes/Pose/node = SubResource("AnimationNodeBlendSpace1D_6u5ye")
+nodes/Pose/position = Vector2(-300, 80)
+nodes/PoseMovement/node = SubResource("AnimationNodeAdd2_ec345")
+nodes/PoseMovement/position = Vector2(-100, -40)
+nodes/Reload/node = SubResource("AnimationNodeBlendSpace1D_dxoxy")
+nodes/Reload/position = Vector2(-100, 180)
+nodes/ReloadOneShot/node = SubResource("AnimationNodeOneShot_gkpgs")
+nodes/ReloadOneShot/position = Vector2(100, 80)
+node_connections = [&"PoseMovement", 0, &"Movement", &"PoseMovement", 1, &"Pose", &"ReloadOneShot", 0, &"PoseMovement", &"ReloadOneShot", 1, &"Reload", &"output", 0, &"ReloadOneShot"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_1hboj")
+speed = 2
+accel = 8
+friction = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0559527, -0.191278)
+shape = SubResource("CapsuleShape3D_56al0")
+
+[node name="Head" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.722, -0.19)
+shape = SubResource("BoxShape3D_nknxc")
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+fov = 70.0
+
+[node name="Hand" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, -0.153, -0.465)
+
+[node name="MK16" parent="Head/Camera3D/Hand" instance=ExtResource("2_3osvj")]
+
+[node name="Skeleton3D" parent="Head/Camera3D/Hand/MK16/Armature" index="0"]
+bones/0/position = Vector3(6.69825e-22, 0.0244107, 0.215919)
+bones/0/rotation = Quaternion(-0.316924, 0.44767, 0.204243, 0.810824)
+bones/1/position = Vector3(4.49244e-18, 0.143468, -0.0560281)
+bones/1/rotation = Quaternion(0.509711, 0.490097, -0.509711, -0.490097)
+bones/2/rotation = Quaternion(-0.586446, -2.17845e-17, -4.18584e-16, 0.809989)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Head/Camera3D/Hand/MK16/Armature/Skeleton3D" index="5"]
+transform = Transform3D(0.515753, -0.614964, 0.596505, 0.047455, 0.715689, 0.696805, -0.855422, -0.331072, 0.398301, 6.69825e-22, 0.0244107, 0.215919)
+bone_name = "Body"
+bone_idx = 0
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D/Hand/MK16/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(-4.35102e-08, -1, 4.37722e-08, 2.23517e-08, -4.37722e-08, -1, 1, -4.35102e-08, 1.49012e-08, -0.0745519, 0.591174, -0.0252763)
+light_energy = 0.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 11.2424
+spot_angle = 34.18
+spot_angle_attenuation = 6.49802
+
+[node name="Trajectory" type="RayCast3D" parent="Head/Camera3D/Hand/MK16/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 20, 0)
+collision_mask = 15
+script = ExtResource("8_qu7ly")
+
+[node name="Eyes" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -5)
+collision_mask = 16
+
+[node name="Voices" type="Node3D" parent="Head"]
+
+[node name="Yell" type="AudioStreamPlayer3D" parent="Head/Voices"]
+stream = ExtResource("4_og1k0")
+max_distance = 10.0
+bus = &"Voice"
+
+[node name="AlertArea" parent="." instance=ExtResource("5_o2fx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="MagReloadCheckTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="SafetyCheckTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="MagThrowPowerTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="AlertAreaTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="RecoilNormalerTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="Script_UI" type="Node" parent="Scripts"]
+script = ExtResource("4_3ew6s")
+
+[node name="UI" type="CanvasLayer" parent="Scripts/Script_UI"]
+layer = 2
+
+[node name="Control" type="Control" parent="Scripts/Script_UI/UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelSafety" type="Label" parent="Scripts/Script_UI/UI/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 226.0
+offset_right = 40.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Auto"
+horizontal_alignment = 1
+
+[node name="LabelAmmo" type="Label" parent="Scripts/Script_UI/UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = 73.0
+offset_right = -312.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ammo:"
+horizontal_alignment = 1
+
+[node name="LabelTimer" type="Timer" parent="Scripts/Script_UI/UI"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Script_Gun" type="Node" parent="Scripts"]
+script = ExtResource("5_7sjsl")
+
+[node name="Script_Interact" type="Node" parent="Scripts"]
+script = ExtResource("4_3o5o7")
+
+[node name="Script_Freelean" type="Node" parent="Scripts"]
+script = ExtResource("5_pivvj")
+
+[node name="Censoring" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="Censoring"]
+material = SubResource("ShaderMaterial_abreu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Head/Camera3D/Hand/MK16")
+libraries = {
+"mk16_mine": ExtResource("8_meemm")
+}
+tree_root = SubResource("AnimationNodeBlendTree_nl1fx")
+anim_player = NodePath("../Head/Camera3D/Hand/MK16/AnimationPlayer")
+parameters/Movement/blend_position = 0.6
+parameters/Pose/blend_position = 1.0
+parameters/PoseMovement/add_amount = 1.0
+parameters/Reload/blend_position = 0.2
+parameters/ReloadOneShot/active = false
+parameters/ReloadOneShot/internal_active = false
+parameters/ReloadOneShot/request = 0
+
+[connection signal="timeout" from="Head/Camera3D/Hand/MK16/FireRate" to="Scripts/Script_Gun" method="_on_fire_rate_timeout"]
+[connection signal="body_entered" from="AlertArea" to="AlertArea" method="_on_body_entered"]
+[connection signal="timeout" from="Timers/MagReloadCheckTimer" to="Scripts/Script_Gun" method="_on_mag_reload_check_timer_timeout"]
+[connection signal="timeout" from="Timers/SafetyCheckTimer" to="Scripts/Script_Gun" method="_on_safety_check_timer_timeout"]
+[connection signal="timeout" from="Timers/MagThrowPowerTimer" to="Scripts/Script_Gun" method="_on_mag_throw_power_timer_timeout"]
+[connection signal="timeout" from="Timers/AlertAreaTimer" to="." method="_on_alert_area_timer_timeout"]
+[connection signal="timeout" from="Timers/RecoilNormalerTimer" to="Scripts/Script_Gun" method="_on_recoil_normaler_timer_timeout"]
+[connection signal="timeout" from="Scripts/Script_UI/UI/LabelTimer" to="Scripts/Script_UI" method="_on_label_timer_timeout"]
+
+[editable path="Head/Camera3D/Hand/MK16"]
